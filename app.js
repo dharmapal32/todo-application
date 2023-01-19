@@ -108,6 +108,31 @@ app.post(`/todos/` async(request,response) => {
 });
 
 app.put(`/todos/:todoId`,async(request,response) => {
-    
+    const {todoId} = request.params;
+    const DetailsTodo = request.body;
+    const {status} = DetailsTodo;
+    const {priority} = DetailsTodo;
+    const {todo} = DetailsTodo;
+    try{
+        const updateTodo = ` update todo 
+        set status ="${status}",
+        priority = "${priority}",
+        todo="${todo} 
+        where id = ${todoId};`;
+        const result = await db.run(updateTodo)
+        response.send("Status Updated");
+        response.send("priority Updated");
+        response.send("Todo Updated")
+    }catch(e){
+        console.log(`put DB error:${e.message}`);
+    }
+
+});
+
+app.delete(`/todos/:todoTd/`,async(request,response)=>{
+    const {todoId} = request.params;
+    const deleteTodo = `delete from todo where id = ${todoId};`;
+    const result = await db.run(deleteTodo);
+    response.send("Todo Deleted");
 })
 module.exports = app;

@@ -1,18 +1,19 @@
 GET http://localhost:3000/todos/?status=TO%20DO
-
 ###
 
 GET http://localhost:3000/todos/?priority=HIGH
 ###
+
 GET http://localhost:3000/todos/?priority=HIGH&status=IN%20PROGRESS
 ###
+
 GET http://localhost:3000/todos/?search_q=Play
 ###
+
 GET http://localhost:3000/todos/
 ###
 
 GET  http://localhost:3000/todos/2/
-
 ###
 
 POST http://localhost:3000/todos/
@@ -25,3 +26,27 @@ Content-Type: application/json
   "status": "TO DO"
 }
 ###
+
+PUT http://localhost:3000/todos/3/
+Content-Type: application/json
+
+{
+  "status": "DONE"
+}
+
+    ```
+    Status Updated
+    ```
+
+{
+"priority": "HIGH"
+}
+    
+    Priority Updated
+    
+
+{
+    "todo": "Some task"
+}
+    
+    Todo Updated

@@ -34,19 +34,12 @@ Content-Type: application/json
   "status": "DONE"
 }
 
-    ```
-    Status Updated
-    ```
-
 {
 "priority": "HIGH"
 }
-    
-    Priority Updated
-    
 
 {
     "todo": "Some task"
 }
     
-    Todo Updated
+  

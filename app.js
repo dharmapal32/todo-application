@@ -83,8 +83,31 @@ app.get("/todos/", async (request, response) => {
             todo LIKE '%${search_q}%';`;
   }
 
-  data = await database.all(getTodoQuery);
+  data = await db.all(getTodoQuery);
   response.send(data);
 });
 
+app.get(`/todos/:todoId/`, async (request, response) => {
+  const { todoId } = request.params;
+  const todoName = `select * from todo where id = ${todoId};`;
+  const result = await db.get(todoName);
+  response.send(result);
+});
+
+app.post(`/todos/` async(request,response) => {
+    const {id,todo,priority,status}=request.body
+    try{
+        const Details = `insert into todo (id,todo,priority,status)
+                values (${id},"${todo}","${priority}","${status}");`;
+        const dbResponse = await db.run(Details);
+        response.send("Todo Successfully Added"); 
+    }catch(e){
+        console.log(`post DB error:${e.message}`);
+        console.log(request.body);
+    }
+});
+
+app.put(`/todos/:todoId`,async(request,response) => {
+    
+})
 module.exports = app;
